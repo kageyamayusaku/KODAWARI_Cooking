@@ -1,12 +1,35 @@
 <div class="container">
-  <div class="row" style="margin-top:200px;">
-    <div class="col-6">
-      <div>
-        <%= image_tag 'o1080088614282290314.jpg', width: '50%', height: '50%' %>
-      </div>
+  <div class="row" style="margin-top:100px;">
+    <div class="col-7">
+      <%= image_tag 'o1080088614282290314.jpg', width: '90%', height: '90%' %>
     </div>
-    <div class="col-6">
-
+    <div class="col-5">
+      <h1 style="font-family:Caveat; font-size:70px;">
+        Enjoy life!
+      </h1>
+      <h2 style="font-size:30px; margin-left:130px;">
+        ～料理を趣味に～
+      </h2>
+      <h2 style="font-size:25px; margin:170px 0 10px 40px;">
+        今日はどんな料理にしますか？
+      </h2>
+      <div class="text-right">
+        <div>
+          <%= link_to new_user_session_path do %>
+            Log in<i class="fa fa-arrow-right"></i>
+          <% end %>
+        </div>
+        <div>
+          <%= link_to new_user_registration_path do %>
+            Sign up<i class="fa fa-arrow-right"></i>
+          <% end %>
+        </div>
+        <div>
+          <%= link_to new_user_session_path do %>
+            Guest log in<i class="fa fa-arrow-right"></i>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
