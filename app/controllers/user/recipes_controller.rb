@@ -1,4 +1,5 @@
 class User::RecipesController < ApplicationController
+
   def create
   end
 
@@ -9,5 +10,8 @@ class User::RecipesController < ApplicationController
   end
 
   def index
+    #Viewのformで取得したパラメータをモデルに渡す
+    @search = Recipe.search(params[:search])
   end
+
 end

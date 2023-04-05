@@ -1,0 +1,7 @@
+<div>
+  <p>検索</p>
+  <%= form_tag(recipes_path,:method => 'get') do %>
+    <%= text_field_tag :search %>
+    <%= submit_tag 'レシピ検索', :name => nil %>
+  <% end %>
+</div>
