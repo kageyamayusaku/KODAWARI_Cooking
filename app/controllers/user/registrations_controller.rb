@@ -67,7 +67,7 @@ class User::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password, :password_confirmation, :profile_picture])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password, :profile_picture])
   end
 
 end

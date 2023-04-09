@@ -4,6 +4,7 @@ class User::RecipesController < ApplicationController
   end
 
   def show
+    @post_comment = PostComment.new
   end
 
   def edit

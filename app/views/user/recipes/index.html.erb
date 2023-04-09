@@ -2,7 +2,7 @@
   <div class="row">
     <%= render 'layouts/search', search: @search %>
   </div>
-  
+
     <ul><% @search.each do |recipe| %>
     <li>
       <%= link_to recipe.title, recipe %>
