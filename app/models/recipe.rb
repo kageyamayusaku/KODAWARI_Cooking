@@ -7,7 +7,7 @@ class Recipe < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_one_attached :recipe_image
 
-  #favoriteが存在しているかどうかmethod
+  # favoriteが存在しているかどうかmethod
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
