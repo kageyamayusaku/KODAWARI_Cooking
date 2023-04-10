@@ -15,6 +15,7 @@ class User::HomesController < ApplicationController
   end
 
   def home
+    @search = Recipe.search(params[:search])
   end
 
 end

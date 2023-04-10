@@ -2,16 +2,16 @@
   <div class="row">
     <%= render 'layouts/search', search: @search %>
   </div>
-
-    <ul><% @search.each do |recipe| %>
-    <li>
-      <%= link_to recipe.title, recipe %>
-      <%= recipe.created_at %>
-      <%= recipe.status %>
-    </li>
-    <%= link_to "編集",edit_recipe_path(recipe) %>
-    <%= link_to "削除",recipe, method: :delete %>
+  <div class="row">
+    <ul>
+    <% @search.each do |recipe| %>
+      <li>
+        <%= link_to recipe.title, recipe %>
+        <%= recipe.created_at %>
+      </li>
+      <%#= link_to "編集",edit_recipe_path(recipe) %>
+      <%#= link_to "削除",recipe, method: :delete %>
     <% end %>
-  </ul>
-
+    </ul>
+  </div>
 </div>
