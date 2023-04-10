@@ -11,3 +11,10 @@ Admin.create!(
   email: "a@a",
   password: "aaaaaa"
 )
+
+# ユーザー１
+User.create!(
+  name: "bbb",
+  email: "b@b",
+  password: "bbbbbb"
+)

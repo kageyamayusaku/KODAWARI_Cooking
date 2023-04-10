@@ -11,9 +11,6 @@ devise_for :user,skip: [:passwords], controllers: {
   sessions: 'user/sessions'
 }
 
-
-  get 'admins/top' => 'admins#top'
-
   scope module: :user do
     root to: "homes#top"
     get 'home' => 'homes#home'
