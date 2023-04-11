@@ -1,66 +1,32 @@
-<div class="container">
-  <%= form_with model: @recipe, url: recipes_path, method: :post do |f| %>
-  <div class="row" style="margin-top:50px;">
-    <div class="form-group">
-      <%= f.text_field :title, class: "form-control form-control-lg", placeholder: "タイトル入力" %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-5">
-      <div class="form-group">
-        <%= f.file_field :recipe_image, class: "form-control-file", accept: "image/*" %>
-      </div>
-    </div>
-    <div class="col-7">
-      <div class="form-group">
-
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group">
-      <%= f.label :ジャンル %><br>
-      <%= f.collection_select(:genre_id, Genre.all, :id, :name, {include_blank: '選択する'}) %>
-    </div>
-    <div class="form-group">
-
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group">
-      <%= f.label :商品説明 %><br>
-      <%= f.text_area :introduction, class: "form-control", placeholder: "説明文を書きましょう。" %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group">
-
-    </div>
-  </div>
-  <div class="row justify-content-center mt-5">
-    <div class="actions">
-      <%= f.submit 'レシピ投稿', class: "btn btn-success" %>
-    </div>
-  </div>
-  <% end %>
-</div>
-
-
-
 <div class="container mt-4 align-imtes-center">
   <div class='bg-light mx-auto mb-5'>
 
-  <%= form_with model: @recipe, local:true do |f| %>
+  <%= form_with model: @recipe do |f| %>
 
-    <!------------ 材料登録欄 -------------->
-      <div class="row">
-        <div class="form-inline mb-2">
-          <h4 class="mb-0">材料</h4>
-          <%= f.text_field :serving, placeholder: "何人分", size:"10x3", class:'ml-4' %>
+  <!------------ タイトル入力欄 -------------->
+    <div class="row">
+      <div class="form-group">
+        <%= f.text_field :title, class: "form-control form-control-lg", placeholder: "タイトル入力" %>
+      </div>
+    </div>
+
+  <!------------ 画像登録欄 -------------->
+    <div class="row">
+      <div class="col-5">
+        <div class="form-group">
+          <%= f.file_field :recipe_image, class: "form-control-file", accept: "image/*" %>
         </div>
       </div>
 
-      <div class="row">
+    <!------------ 材料登録欄 -------------->
+      <div class="col-7">
+        <div class="form-group">
+          <div class="form-inline mb-2">
+            <h4 class="mb-0">材料</h4>
+            <%= f.text_field :serving, placeholder: "何人分", size:"10x3", class:'ml-4' %>
+          </div>
+        </div>
+
         <table class="table table-borderless mb-0" id="ingredient-table">
           <thead>
             <th class="pb-1"><h6 class="mb-0">材料・調味料</h6></th>
@@ -76,10 +42,22 @@
             <% end %>
           </tbody>
         </table>
-        <input type="button" value="材料を追加" onclick="addRow('ingredient-table')" class="btn btn-sm btn-color py-0 my-3 ml-2">
+          <input type="button" value="材料を追加" onclick="addRow('ingredient-table')" class="btn btn-sm btn-color py-0 my-3 ml-2">
       </div>
+    </div>
 
-    <!------------ 作成手順登録欄 -------------->
+  <!------------ ジャンル,タグ登録欄 -------------->
+    <div class="row">
+      <div class="form-group">
+        <%= f.label :ジャンル %><br>
+        <%= f.collection_select(:genre_id, Genre.all, :id, :name, {include_blank: '選択する'}) %>
+      </div>
+      <div class="form-group">
+
+      </div>
+    </div>
+
+  <!------------ 作成手順登録欄 -------------->
     <div style='max-width: 680px' class="mt-3 px-5 pt-4 mx-auto border-0">
       <div class="row">
         <h4 class="text-center mx-auto mb-0">つくり方</h4>
