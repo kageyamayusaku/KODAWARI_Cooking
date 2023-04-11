@@ -16,10 +16,9 @@ class User::RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
-      flash[:notice] = "投稿しました！"
-      redirect_to recipe_path(@recipe.id)
+      redirect_to recipe_path(@recipe.id), notice: "レシピを投稿しました！"
     else
-      render :new
+      render :new, alert: "登録できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
     end
   end
 
@@ -33,7 +32,12 @@ class User::RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:user_id, :genre_id, :tag_id, :title, :recipe_image, :material, :seasoning, :introduction, :process)
+    params.require(:recipe).permit(
+      :user_id, :genre_id, :tag_id, :material_id, :procedure_id, :title,
+      :recipe_image, :introduction, :serving,
+      materials_attributes: [:name, :amount, :_destroy],
+      procedurees_attributes: [:body, :_destroy]
+    )
   end
 
 end

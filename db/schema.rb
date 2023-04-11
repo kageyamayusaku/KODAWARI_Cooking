@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_26_061227) do
+ActiveRecord::Schema.define(version: 2023_04_11_100813) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -65,6 +65,13 @@ ActiveRecord::Schema.define(version: 2023_03_26_061227) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "materials", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "amount", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "post_comments", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "recipe_id", null: false
@@ -73,14 +80,21 @@ ActiveRecord::Schema.define(version: 2023_03_26_061227) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "procedures", force: :cascade do |t|
+    t.text "body", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "recipes", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "genre_id", null: false
     t.integer "tag_id", null: false
+    t.integer "material_id", null: false
+    t.integer "process_id", null: false
     t.string "title", null: false
-    t.string "seasoning", null: false
     t.string "introduction", null: false
-    t.string "process", null: false
+    t.string "serving", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

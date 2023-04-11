@@ -4,10 +4,11 @@ class CreateRecipes < ActiveRecord::Migration[6.1]
       t.integer :user_id, null: false
       t.integer :genre_id, null: false
       t.integer :tag_id, null: false
+      t.integer :material_id, null: false
+      t.integer :process_id, null: false
       t.string :title, null: false
-      t.string :seasoning, null: false
       t.string :introduction, null: false
-      t.string :process, null: false
+      t.string :serving, null: false
       t.timestamps
     end
   end

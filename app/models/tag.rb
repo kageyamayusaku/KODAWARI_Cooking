@@ -1,5 +1,9 @@
 class Tag < ApplicationRecord
 
-    has_many :recipes
+  # アソシエーション
+  has_many :recipes
+
+  # バリデーション
+  validates :name, presence: true
 
 end
