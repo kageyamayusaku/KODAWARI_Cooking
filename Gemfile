@@ -55,4 +55,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+
+
+# deviseのGemfile
 gem 'devise'
+
+# 入力フォームの追加,削除のGemfile
+gem 'cocoon'

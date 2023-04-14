@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2023_04_11_100813) do
   end
 
   create_table "materials", force: :cascade do |t|
+    t.integer "recipe_id", null: false
     t.string "name", null: false
     t.string "amount", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 2023_04_11_100813) do
   end
 
   create_table "procedures", force: :cascade do |t|
+    t.integer "recipe_id", null: false
     t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -90,8 +92,6 @@ ActiveRecord::Schema.define(version: 2023_04_11_100813) do
     t.integer "user_id", null: false
     t.integer "genre_id", null: false
     t.integer "tag_id", null: false
-    t.integer "material_id", null: false
-    t.integer "process_id", null: false
     t.string "title", null: false
     t.string "introduction", null: false
     t.string "serving", null: false

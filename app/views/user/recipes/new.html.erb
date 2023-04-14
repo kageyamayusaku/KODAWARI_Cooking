@@ -1,12 +1,12 @@
 <div class="container mt-4 align-imtes-center">
-  <div class='bg-light mx-auto mb-5'>
+  <div class='mx-auto mb-5'>
 
-  <%= form_with model: @recipe do |f| %>
+  <%= form_with model: @recipe, local: true do |f| %>
 
   <!------------ タイトル入力欄 -------------->
     <div class="row">
       <div class="form-group">
-        <%= f.text_field :title, class: "form-control form-control-lg", placeholder: "タイトル入力" %>
+        <%= f.text_field :title, class: "form-control form-control-lg", placeholder: "タイトル" %>
       </div>
     </div>
 
@@ -35,8 +35,8 @@
           <tbody>
             <%= f.fields_for :materials do |material| %>
               <tr>
-                <td style="width: 12%" class="py-1"><%= ingredient.text_field :name, placeholder: "例）にんじん" %></td>
-                <td style="width: 10%" class="py-1"><%= ingredient.text_field :amount, placeholder: "例）一本" %></td>
+                <td style="width: 12%" class="py-1"><%= material.text_field :name, placeholder: "例）にんじん" %></td>
+                <td style="width: 10%" class="py-1"><%= material.text_field :amount, placeholder: "例）一本" %></td>
                 <td class="align-middle p-0"><input type="button" value="削除" onclick="deleteRow(this)"></td>
               </tr>
             <% end %>
@@ -76,6 +76,34 @@
       </div>
     </div>
 
+
+
+
+     <div class="materials">
+      <div class="mx-auto">
+        <%= f.fields_for :materials do |t| %>
+          <%= render "user/recipes/material_fields", f: t %>
+        <% end %>
+      </div>
+
+      <div id="detail-association-insertion-point"></div>
+
+      <div class="col-10 mx-auto mt-2">
+        <%= link_to_add_association "+フォームを追加", f, :materials,
+        class: "btn btn-secondary btn-block",
+        data: {
+        association_insertion_node: '#detail-association-insertion-point',
+        association_insertion_method: 'after'
+        }%>
+      </div>
+    </div>
+
+
+
+
+
+
+  <!------------ 登録ボタン -------------->
     <div class="row mt-4 pb-5">
       <div class="form-inline mx-auto">
         <%= f.submit 'レシピを公開', :name => 'post', style: 'font-size: 20px', class:'mr-5 btn btn-sm btn-warning text-white' %>

@@ -7,17 +7,17 @@ class Recipe < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :materials, dependent: :destroy
-  has_many :procedurees, dependent: :destroy
+  has_many :procedures, dependent: :destroy
   has_one_attached :recipe_image
 
   # 関連付けしたmaterialモデル,procedureモデルを一緒にデータ保存できるようにする
   accepts_nested_attributes_for :materials, allow_destroy: true
-  accepts_nested_attributes_for :procedurees, allow_destroy: true
+  accepts_nested_attributes_for :procedures, allow_destroy: true
 
   # バリデーション
   with_options presence: true do
     validates :materials
-    validates :procedurees
+    validates :procedures
     validates :title
     validates :recipe_image
     validates :introduction

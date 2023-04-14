@@ -1,7 +1,7 @@
 class User::RecipesController < ApplicationController
 
   def index
-    #Viewのformで取得したパラメータをモデルに渡す
+    # Viewのformで取得したパラメータをモデルに渡す
     @search = Recipe.search(params[:search])
   end
 
@@ -11,6 +11,9 @@ class User::RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    # 親モデル.子モデル.buildで子モデルのインスタンス作成
+    @materials = @recipe.materials.build
+    @procedures = @recipe.procedures.build
   end
 
   def create
@@ -36,7 +39,7 @@ class User::RecipesController < ApplicationController
       :user_id, :genre_id, :tag_id, :material_id, :procedure_id, :title,
       :recipe_image, :introduction, :serving,
       materials_attributes: [:name, :amount, :_destroy],
-      procedurees_attributes: [:body, :_destroy]
+      procedures_attributes: [:body, :_destroy]
     )
   end
 
