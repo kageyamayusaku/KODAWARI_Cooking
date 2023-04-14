@@ -6,7 +6,7 @@
   <!------------ タイトル入力欄 -------------->
     <div class="row">
       <div class="form-group">
-        <%= f.text_field :title, class: "form-control form-control-lg", placeholder: "タイトル" %>
+        <%= f.text_field :title, class: "form-control form-control-lg", size: '40 x 3', placeholder: "タイトル" %>
       </div>
     </div>
 
@@ -62,55 +62,51 @@
 
   <!------------ ポイント入力欄 -------------->
     <div class="row">
+      <h5 class="mb-1">Point</h5>
+    </div>
+    <div class="row">
       <div class="form-group">
-        <%= f.text_field :introduction, class: "form-control form-control-lg", placeholder: "point" %>
+        <%= f.text_area :introduction, class: "form-control form-control-lg", size:'60 x 4', placeholder: "入力" %>
       </div>
     </div>
 
   <!------------ 材料登録欄 -------------->
     <div class="row">
-
-      <div class="col-7">
-        <div class="form-inline mb-2">
-          <h4 class="mb-0">材料</h4>
-          <%= f.text_field :serving, placeholder: "何人分", size:"10x3", class:'ml-4' %>
-        </div>
+      <h5 class="mb-1">～作り方～</h5>
+    </div>
+    <div class="row">
+      <div>
         <div class="materials">
           <div class="mx-auto">
-            <div class="form-inline mt-4 mb-2">
-              <h6 class="offset-1">材料・調味料</h6>
-              <h6 class="offset-3">分量</h6>
-            </div>
-            <%= f.fields_for :materials do |t| %>
-              <%= render "user/recipes/material_fields", f: t %>
+            <%= f.fields_for :procedures do |t| %>
+              <%= render "user/recipes/procedure_fields", f: t %>
             <% end %>
           </div>
 
-          <div id="detail-association-insertion-point"></div>
+          <div id="detail-association-insertion-point2"></div>
 
           <div class="col-5 mx-auto mt-2">
-            <%= link_to_add_association "+フォームを追加", f, :materials,
+            <%= link_to_add_association "+フォームを追加", f, :procedures,
             class: "btn btn-secondary btn-block",
             data: {
-            association_insertion_node: '#detail-association-insertion-point',
+            association_insertion_node: '#detail-association-insertion-point2',
             association_insertion_method: 'after'
             }%>
           </div>
         </div>
       </div>
-
     </div>
 
   <!------------ 登録ボタン -------------->
     <div class="row mt-4 pb-5">
       <div class="form-inline mx-auto">
-        <%= f.submit 'レシピを公開', :name => 'post', style: 'font-size: 20px', class:'mr-5 btn btn-sm btn-warning text-white' %>
-        <%= f.submit '下書きに保存', :name => 'update', style: 'font-size: 20px', class:'mr-5 btn btn-sm btn-outline-secondary' %>
+        <%= f.submit 'レシピを公開', :name => 'post', style: 'font-size: 20px', class: 'mr-5 btn btn-sm btn-warning text-white' %>
+        <%= f.submit '下書きに保存', :name => 'update', style: 'font-size: 20px', class: 'mr-5 btn btn-sm btn-outline-secondary' %>
       </div>
     </div>
 
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <% end %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <% end %>
 
   </div>
 </div>

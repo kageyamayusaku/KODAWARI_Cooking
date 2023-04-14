@@ -1,0 +1,10 @@
+<div class="nested-fields">
+  <div class="row mb-1">
+    <div class="d-inline-block">
+      <%= f.text_area :body, placeholder: "手順を記入", size: '80 x 3', class: 'p-2' %>
+    </div>
+    <div class="d-inline-block">
+      <%= link_to_remove_association "削除", f, class: "btn btn-secondary btn-block" %>
+    </div>
+  </div>
+</div>
