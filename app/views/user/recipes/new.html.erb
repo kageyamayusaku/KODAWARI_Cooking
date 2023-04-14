@@ -20,29 +20,32 @@
 
     <!------------ 材料登録欄 -------------->
       <div class="col-7">
-        <div class="form-group">
-          <div class="form-inline mb-2">
-            <h4 class="mb-0">材料</h4>
-            <%= f.text_field :serving, placeholder: "何人分", size:"10x3", class:'ml-4' %>
+        <div class="form-inline mb-2">
+          <h4 class="mb-0">材料</h4>
+          <%= f.text_field :serving, placeholder: "何人分", size:"10x3", class:'ml-4' %>
+        </div>
+        <div class="materials">
+          <div class="mx-auto">
+            <div class="form-inline mt-4 mb-2">
+              <h6 class="offset-1">材料・調味料</h6>
+              <h6 class="offset-3">分量</h6>
+            </div>
+            <%= f.fields_for :materials do |t| %>
+              <%= render "user/recipes/material_fields", f: t %>
+            <% end %>
+          </div>
+
+          <div id="detail-association-insertion-point"></div>
+
+          <div class="col-5 mx-auto mt-2">
+            <%= link_to_add_association "+フォームを追加", f, :materials,
+            class: "btn btn-secondary btn-block",
+            data: {
+            association_insertion_node: '#detail-association-insertion-point',
+            association_insertion_method: 'after'
+            }%>
           </div>
         </div>
-
-        <table class="table table-borderless mb-0" id="ingredient-table">
-          <thead>
-            <th class="pb-1"><h6 class="mb-0">材料・調味料</h6></th>
-            <th class="pb-1"><h6 class="mb-0">分量</h6></th>
-          </thead>
-          <tbody>
-            <%= f.fields_for :materials do |material| %>
-              <tr>
-                <td style="width: 12%" class="py-1"><%= material.text_field :name, placeholder: "例）にんじん" %></td>
-                <td style="width: 10%" class="py-1"><%= material.text_field :amount, placeholder: "例）一本" %></td>
-                <td class="align-middle p-0"><input type="button" value="削除" onclick="deleteRow(this)"></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-          <input type="button" value="材料を追加" onclick="addRow('ingredient-table')" class="btn btn-sm btn-color py-0 my-3 ml-2">
       </div>
     </div>
 
@@ -57,51 +60,46 @@
       </div>
     </div>
 
-  <!------------ 作成手順登録欄 -------------->
-    <div style='max-width: 680px' class="mt-3 px-5 pt-4 mx-auto border-0">
-      <div class="row">
-        <h4 class="text-center mx-auto mb-0">つくり方</h4>
-      </div>
-
-      <div class="row">
-        <table class="table table-borderless" id="procedure-table">
-          <%= f.fields_for :procedures do |procedure| %>
-          <tr>
-            <td style='width: 70%' class="px-0"><%= procedure.text_area :body, placeholder:"手順を記入", size:'80 x 3', class:'p-2' %> </td>
-            <td class="align-middle"><input type="button" value="削除" onclick="deleteRow(this)"></td>
-          </tr>
-          <% end %>
-        </table>
-        <input type="button" value="手順を追加" onclick="addRow('procedure-table')" class="btn btn-sm btn-color py-0 mb-3">
+  <!------------ ポイント入力欄 -------------->
+    <div class="row">
+      <div class="form-group">
+        <%= f.text_field :introduction, class: "form-control form-control-lg", placeholder: "point" %>
       </div>
     </div>
 
+  <!------------ 材料登録欄 -------------->
+    <div class="row">
 
+      <div class="col-7">
+        <div class="form-inline mb-2">
+          <h4 class="mb-0">材料</h4>
+          <%= f.text_field :serving, placeholder: "何人分", size:"10x3", class:'ml-4' %>
+        </div>
+        <div class="materials">
+          <div class="mx-auto">
+            <div class="form-inline mt-4 mb-2">
+              <h6 class="offset-1">材料・調味料</h6>
+              <h6 class="offset-3">分量</h6>
+            </div>
+            <%= f.fields_for :materials do |t| %>
+              <%= render "user/recipes/material_fields", f: t %>
+            <% end %>
+          </div>
 
+          <div id="detail-association-insertion-point"></div>
 
-     <div class="materials">
-      <div class="mx-auto">
-        <%= f.fields_for :materials do |t| %>
-          <%= render "user/recipes/material_fields", f: t %>
-        <% end %>
+          <div class="col-5 mx-auto mt-2">
+            <%= link_to_add_association "+フォームを追加", f, :materials,
+            class: "btn btn-secondary btn-block",
+            data: {
+            association_insertion_node: '#detail-association-insertion-point',
+            association_insertion_method: 'after'
+            }%>
+          </div>
+        </div>
       </div>
 
-      <div id="detail-association-insertion-point"></div>
-
-      <div class="col-10 mx-auto mt-2">
-        <%= link_to_add_association "+フォームを追加", f, :materials,
-        class: "btn btn-secondary btn-block",
-        data: {
-        association_insertion_node: '#detail-association-insertion-point',
-        association_insertion_method: 'after'
-        }%>
-      </div>
     </div>
-
-
-
-
-
 
   <!------------ 登録ボタン -------------->
     <div class="row mt-4 pb-5">
