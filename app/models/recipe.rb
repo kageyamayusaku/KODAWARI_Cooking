@@ -5,27 +5,28 @@ class Recipe < ApplicationRecord
   belongs_to :genre
   belongs_to :tag
   has_many :post_comments, dependent: :destroy
-  has_many :favorites, dependent: :destroy
-  has_many :materials, dependent: :destroy
-  has_many :procedures, dependent: :destroy
+  has_many :favorites,     dependent: :destroy
+  has_many :materials,     dependent: :destroy
+  has_many :procedures,    dependent: :destroy
   has_one_attached :recipe_image
 
   # 関連付けしたmaterialモデル,procedureモデルを一緒にデータ保存できるようにする
-  accepts_nested_attributes_for :materials, allow_destroy: true
+  accepts_nested_attributes_for :materials,  allow_destroy: true
   accepts_nested_attributes_for :procedures, allow_destroy: true
 
   # バリデーション
-  with_options presence: true do
+  with_options presence: true, on: :publicize do
     validates :materials
     validates :procedures
+    validates :genre_id
+    validates :tag_id
     validates :title
     validates :recipe_image
     validates :introduction
     validates :serving
   end
-
-  validates :title, length: { maximum: 14 }
-  validates :introduction, length: { maximum: 80 }
+  validates :title,        length: { maximum: 14 }, on: :publicize
+  validates :introduction, length: { maximum: 80 }, on: :publicize
 
   # favoriteが存在しているかどうかmethod
   def favorited_by?(user)

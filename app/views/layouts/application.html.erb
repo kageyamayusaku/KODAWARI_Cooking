@@ -37,6 +37,14 @@
     </header>
     <% end %>
     <main class="mb-auto">
+      <div class="text-center">
+        <div class="bg-primary text-white">
+          <%= notice %>
+        </div>
+        <div class="bg-warning text-dark">
+          <%= alert %>
+        </div>
+      </div>
       <%= yield %>
     </main>
     <footer class="bg-dark text-white pt-5 pb-4">

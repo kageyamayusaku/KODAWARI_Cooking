@@ -18,3 +18,27 @@ User.create!(
   email: "b@b",
   password: "bbbbbb"
 )
+
+# ジャンル
+Genre.create!(
+ [
+  {
+   name: '和食',
+  },
+  {
+   name: '洋食',
+  },
+  {
+   name: '中華',
+  },
+  {
+   name: '東南アジア料理',
+  },
+  {
+   name: 'ジャンクフード',
+  },
+  {
+   name: 'デザート',
+  }
+ ]
+)
