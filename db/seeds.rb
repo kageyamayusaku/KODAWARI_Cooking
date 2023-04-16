@@ -20,25 +20,20 @@ User.create!(
 )
 
 # ジャンル
-Genre.create!(
- [
-  {
-   name: '和食',
-  },
-  {
-   name: '洋食',
-  },
-  {
-   name: '中華',
-  },
-  {
-   name: '東南アジア料理',
-  },
-  {
-   name: 'ジャンクフード',
-  },
-  {
-   name: 'デザート',
-  }
- ]
-)
+Genre.create!([
+  { name: '和食' },
+  { name: '洋食' },
+  { name: '中華' },
+  { name: '東南アジア料理' },
+  { name: 'ジャンクフード' },
+  { name: 'デザート' }
+])
+
+# タグ
+Tag.create!([
+  { name: 'タグ1' },
+  { name: 'タグ2' },
+  { name: 'タグ3' },
+  { name: 'タグ4' },
+  { name: 'タグ5' }
+])

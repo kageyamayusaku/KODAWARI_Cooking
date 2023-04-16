@@ -1,12 +1,26 @@
 class User::RecipesController < ApplicationController
 
   def index
-    # Viewのformで取得したパラメータをモデルに渡す
-    @search = Recipe.search(params[:search])
+    @recipes = Recipe.all
+    # ジャンル,タグ検索
+    if params[:tag_ids]
+      @recipes = []
+      params[:tag_ids].each do |key, value|
+        @recipes += Tag.find_by(name: key).recipes if value == "1"
+      end
+      @recipes.uniq!
+    else params[:search]
+      @recipes = Recipe.search(params[:search])
+    end
+    # タグのパラメータがあればindexアクション内でtagsテーブルに保存
+    if params[:tag]
+      Tag.create(name: params[:tag])
+    end
   end
 
 
   def show
+    @recipe = Recipe.find(params[:id])
     @post_comment = PostComment.new
   end
 
@@ -25,7 +39,7 @@ class User::RecipesController < ApplicationController
     if params[:post]
       if @recipe.save(context: :publicize)
         redirect_to recipe_path(@recipe), notice: "レシピを投稿しました！"
-      else
+      else params[:draft]
         render :new, alert: "登録できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
       end
     # 下書きボタンを押下した場合
@@ -56,20 +70,20 @@ class User::RecipesController < ApplicationController
         @recipe.is_draft = true
         render :edit, alert: "レシピを公開できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
       end
-    # ➁公開済みレシピの更新の場合
-    elsif params[:update_post]
+    # ➁下書きレシピの更新（非公開）の場合
+    elsif params[:update_draft]
+      if @recipe.update(recipe_params)
+        redirect_to recipe_path(@recipe.id), notice: "下書きレシピを更新しました！"
+      else
+        render :edit, alert: "更新できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
+      end
+    # ➂公開済みレシピの更新の場合
+    else　params[:update_post]
       @recipe.attributes = recipe_params
       if @recipe.save(context: :publicize)
         redirect_to recipe_path(@recipe.id), notice: "レシピを更新しました！"
       else
         render :edit, alert: "レシピを更新できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
-      end
-    # ➂下書きレシピの更新（非公開）の場合
-    else
-      if @recipe.update(recipe_params)
-        redirect_to recipe_path(@recipe.id), notice: "下書きレシピを更新しました！"
-      else
-        render :edit, alert: "更新できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
       end
     end
   end
@@ -81,10 +95,11 @@ class User::RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(
-      :user_id, :genre_id, :tag_id, :material_id, :procedure_id, :title,
+      :user_id, :genre_id, :material_id, :procedure_id, :title,
       :recipe_image, :introduction, :serving, :is_draft,
       materials_attributes: [:name, :amount, :_destroy],
-      procedures_attributes: [:body, :_destroy]
+      procedures_attributes: [:body, :_destroy],
+      tag_ids: []
     )
   end
 

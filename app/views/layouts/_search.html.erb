@@ -1,7 +1,27 @@
-<div>
-  <p>検索</p>
-  <%= form_tag(recipes_path,:method => 'get') do %>
-    <%= text_field_tag :search %>
-    <%= submit_tag 'レシピ検索', :name => nil %>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <p>レシピで探す</p>
+    <%= form_tag(recipes_path, method: :get) do %>
+      <%= text_field_tag :search %>
+      <%= submit_tag 'レシピ検索', :name => nil %>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <p>ジャンルで探す</p>
+  </div>
+
+  <div class="row">
+    <p>タグで探す</p>
+    <%= form_tag({controller: "recipes",action: "index"}, method: :get) do %>
+      <% Tag.all.each do |t| %>
+        <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+      <% end %>
+      <%= submit_tag '検索' %>
+    <% end %>
+    <%= form_tag({controller: "recipes",action: "index"}, method: :get) do %>
+      <%= text_field_tag :tag %>
+      <%= submit_tag 'タグを追加' %>
+    <% end %>
+  </div>
 </div>

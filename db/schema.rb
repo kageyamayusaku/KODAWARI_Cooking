@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_11_100813) do
+ActiveRecord::Schema.define(version: 2023_04_16_082017) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 2023_04_11_100813) do
     t.integer "recipe_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipe_id"], name: "index_favorites_on_recipe_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -71,6 +73,7 @@ ActiveRecord::Schema.define(version: 2023_04_11_100813) do
     t.string "amount", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipe_id"], name: "index_materials_on_recipe_id"
   end
 
   create_table "post_comments", force: :cascade do |t|
@@ -79,6 +82,8 @@ ActiveRecord::Schema.define(version: 2023_04_11_100813) do
     t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipe_id"], name: "index_post_comments_on_recipe_id"
+    t.index ["user_id"], name: "index_post_comments_on_user_id"
   end
 
   create_table "procedures", force: :cascade do |t|
@@ -86,18 +91,31 @@ ActiveRecord::Schema.define(version: 2023_04_11_100813) do
     t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipe_id"], name: "index_procedures_on_recipe_id"
+  end
+
+  create_table "recipe_tag_relations", force: :cascade do |t|
+    t.integer "recipe_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipe_id"], name: "index_recipe_tag_relations_on_recipe_id"
+    t.index ["tag_id"], name: "index_recipe_tag_relations_on_tag_id"
   end
 
   create_table "recipes", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "genre_id", null: false
-    t.integer "tag_id", null: false
+    t.integer "recipe_tag_relation_id", null: false
     t.string "title", null: false
     t.string "introduction", null: false
     t.string "serving", null: false
     t.boolean "is_draft", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_recipes_on_genre_id"
+    t.index ["recipe_tag_relation_id"], name: "index_recipes_on_recipe_tag_relation_id"
+    t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -121,4 +139,15 @@ ActiveRecord::Schema.define(version: 2023_04_11_100813) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "favorites", "recipes"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "materials", "recipes"
+  add_foreign_key "post_comments", "recipes"
+  add_foreign_key "post_comments", "users"
+  add_foreign_key "procedures", "recipes"
+  add_foreign_key "recipe_tag_relations", "recipes"
+  add_foreign_key "recipe_tag_relations", "tags"
+  add_foreign_key "recipes", "genres"
+  add_foreign_key "recipes", "recipe_tag_relations"
+  add_foreign_key "recipes", "users"
 end

@@ -4,6 +4,7 @@
   <%= form_with model: @recipe, local: true do |f| %>
 
 
+  <!------------ 登録ボタン -------------->
     <div class="row mt-4">
       <div class="form-inline mx-auto">
         <% if @recipe.is_draft == true %>
@@ -15,10 +16,10 @@
       </div>
     </div>
     <div class="mt-4 pb-3 text-center">
-      <u><%= link_to "レシピを削除", recipe_path(@recipe), method: :delete, data: {confirm: "このレシピを削除しますか？"}, class: 'text-danger' %></u>
+      <u>
+        <%= link_to "レシピを削除", recipe_path(@recipe), method: :delete, data: {confirm: "このレシピを削除しますか？"}, class: 'text-danger' %>
+      </u>
     </div>
-
-
 
 
   <% end %>

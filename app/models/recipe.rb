@@ -3,11 +3,12 @@ class Recipe < ApplicationRecord
   # アソシエーション
   belongs_to :user
   belongs_to :genre
-  belongs_to :tag
-  has_many :post_comments, dependent: :destroy
-  has_many :favorites,     dependent: :destroy
-  has_many :materials,     dependent: :destroy
-  has_many :procedures,    dependent: :destroy
+  has_many :post_comments,        dependent: :destroy
+  has_many :favorites,            dependent: :destroy
+  has_many :materials,            dependent: :destroy
+  has_many :procedures,           dependent: :destroy
+  has_many :recipe_tag_relations, dependent: :destroy
+  has_many :tags, through: :recipe_tag_relations, dependent: :destroy
   has_one_attached :recipe_image
 
   # 関連付けしたmaterialモデル,procedureモデルを一緒にデータ保存できるようにする
@@ -16,10 +17,9 @@ class Recipe < ApplicationRecord
 
   # バリデーション
   with_options presence: true, on: :publicize do
+    validates :genre_id
     validates :materials
     validates :procedures
-    validates :genre_id
-    validates :tag_id
     validates :title
     validates :recipe_image
     validates :introduction

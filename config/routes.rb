@@ -19,8 +19,6 @@ devise_for :user,skip: [:passwords], controllers: {
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
-    resources :genres
-    resources :tags
   end
 
 end

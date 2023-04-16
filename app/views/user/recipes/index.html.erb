@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
-    <%= render 'layouts/search', search: @search %>
+    <%= render 'layouts/search', recipes: @recipes %>
   </div>
   <div class="row">
     <ul>
-    <% @search.each do |recipe| %>
+    <% @recipes.each do |recipe| %>
       <li>
         <%= link_to recipe.title, recipe %>
         <%= recipe.created_at %>
