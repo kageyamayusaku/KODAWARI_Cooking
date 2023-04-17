@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 2023_04_16_082017) do
     t.integer "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipe_id", "tag_id"], name: "index_recipe_tag_relations_on_recipe_id_and_tag_id", unique: true
     t.index ["recipe_id"], name: "index_recipe_tag_relations_on_recipe_id"
     t.index ["tag_id"], name: "index_recipe_tag_relations_on_tag_id"
   end

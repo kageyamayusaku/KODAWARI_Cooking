@@ -1,3 +1,98 @@
-<% @recipe.tags.each do |tag| %>
-  <span><%= tag.name %></span>
-<% end %>
+<div class="container mt-4 align-imtes-center">
+  <div class='mx-auto mb-5'>
+
+  <!------------ タイトル -------------->
+    <div class="row">
+      <div class="form-group">
+        <%= @recipe.title, size: '40 x 3' %>
+      </div>
+    </div>
+
+  <!------------ 画像 -------------->
+    <div class="row">
+      <div class="col-5">
+        <div class="form-group">
+          <%= @recipe.recipe_image, :size => '350x300' %>
+        </div>
+      </div>
+
+    <!------------ 材料 -------------->
+      <div class="col-7">
+        <div class="form-inline mb-2">
+          <h4 class="mb-0">材料</h4>
+          <%= @recipe.serving, size: "10x3", class: 'ml-4' %>
+        </div>
+        <div class="materials">
+          <div class="mx-auto">
+            <div class="form-inline mt-4 mb-2">
+              <h6 class="offset-1">材料・調味料</h6>
+              <h6 class="offset-3">分量</h6>
+            </div>
+            <%= @recipe.materials each do |material| %>
+              <div class="nested-fields">
+                <div class="row mx-auto mb-1">
+                  <div class="col-4"><%= material.name %></div>
+                  <div class="offset-1 col-3"><%= material.amount %></div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!------------ ジャンル,タグ -------------->
+    <div class="row">
+      <div class="form-group">
+        <%= @recipe.genre %>
+      </div>
+      <div class="form-group">
+        <% @recipe.tags.each do |tag| %>
+          <span><%= tag.name %></span>
+        <% end %>
+      </div>
+    </div>
+
+  <!------------ ポイント -------------->
+    <div class="row">
+      <h5 class="mb-1">Point</h5>
+    </div>
+    <div class="row">
+      <div class="form-group">
+        <%= @recipe.introduction, size: '60 x 4' %>
+      </div>
+    </div>
+
+  <!------------ 手順 -------------->
+    <div class="row">
+      <h5 class="mb-1">～作り方～</h5>
+    </div>
+    <div class="row">
+      <div>
+        <div class="materials">
+          <div class="mx-auto">
+            <%= @recipe.procedures do |procedure| %>
+              <div class="nested-fields">
+                <div class="row mb-1">
+                  <div class="d-inline-block">
+                    <%= procedure.body, size: '80 x 3' %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!------------ 編集 -------------->
+    <div class="row mt-4 pb-5">
+      <div class="form-inline mx-auto">
+        <%= link_to edit_recipe_path(@recipe.id) do %>
+          編集へ
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>
