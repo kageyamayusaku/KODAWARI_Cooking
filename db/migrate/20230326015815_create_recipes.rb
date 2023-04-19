@@ -3,7 +3,7 @@ class CreateRecipes < ActiveRecord::Migration[6.1]
     create_table :recipes do |t|
       t.references :user,     null: false, foreign_key: true
       t.references :genre,    null: false, foreign_key: true
-      t.references :recipe_tag_relation, null: false, foreign_key: true
+      t.references :recipe_tag_relation, foreign_key: true # , null: false
       t.string :title,        null: false
       t.string :introduction, null: false
       t.string :serving,      null: false

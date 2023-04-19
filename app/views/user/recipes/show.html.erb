@@ -4,7 +4,7 @@
   <!------------ タイトル -------------->
     <div class="row">
       <div class="form-group">
-        <%= @recipe.title, size: '40 x 3' %>
+        <%= @recipe.title %>
       </div>
     </div>
 
@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-5">
         <div class="form-group">
-          <%= @recipe.recipe_image, :size => '350x300' %>
+          <%= @recipe.recipe_image %>
         </div>
       </div>
 
@@ -20,7 +20,7 @@
       <div class="col-7">
         <div class="form-inline mb-2">
           <h4 class="mb-0">材料</h4>
-          <%= @recipe.serving, size: "10x3", class: 'ml-4' %>
+          <%= @recipe.serving %>
         </div>
         <div class="materials">
           <div class="mx-auto">
@@ -28,7 +28,7 @@
               <h6 class="offset-1">材料・調味料</h6>
               <h6 class="offset-3">分量</h6>
             </div>
-            <%= @recipe.materials each do |material| %>
+            <% @recipe.materials.each do |material| %>
               <div class="nested-fields">
                 <div class="row mx-auto mb-1">
                   <div class="col-4"><%= material.name %></div>
@@ -59,7 +59,7 @@
     </div>
     <div class="row">
       <div class="form-group">
-        <%= @recipe.introduction, size: '60 x 4' %>
+        <%= @recipe.introduction %>
       </div>
     </div>
 
@@ -75,7 +75,7 @@
               <div class="nested-fields">
                 <div class="row mb-1">
                   <div class="d-inline-block">
-                    <%= procedure.body, size: '80 x 3' %>
+                    <%= procedure.body %>
                   </div>
                 </div>
               </div>

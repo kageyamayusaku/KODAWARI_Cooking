@@ -43,7 +43,7 @@ class User::RecipesController < ApplicationController
         render :new, alert: "登録できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
       end
     # 下書きボタンを押下した場合
-    else params[:draft]
+    elsif params[:draft]
       if @recipe.update(is_draft: true)
         redirect_to edit_recipe_path(@recipe), notice: "レシピを下書き保存しました！"
       else
@@ -78,7 +78,7 @@ class User::RecipesController < ApplicationController
         render :edit, alert: "更新できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
       end
     # ➂公開済みレシピの更新の場合
-    else　params[:update_post]
+    elsif　params[:update_post]
       @recipe.attributes = recipe_params
       if @recipe.save(context: :publicize)
         redirect_to recipe_path(@recipe.id), notice: "レシピを更新しました！"

@@ -95,8 +95,8 @@ ActiveRecord::Schema.define(version: 2023_04_16_082017) do
   end
 
   create_table "recipe_tag_relations", force: :cascade do |t|
-    t.integer "recipe_id", null: false
-    t.integer "tag_id", null: false
+    t.integer "recipe_id"
+    t.integer "tag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipe_id", "tag_id"], name: "index_recipe_tag_relations_on_recipe_id_and_tag_id", unique: true
@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 2023_04_16_082017) do
   create_table "recipes", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "genre_id", null: false
-    t.integer "recipe_tag_relation_id", null: false
+    t.integer "recipe_tag_relation_id"
     t.string "title", null: false
     t.string "introduction", null: false
     t.string "serving", null: false

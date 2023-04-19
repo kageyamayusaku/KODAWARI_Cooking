@@ -62,3 +62,5 @@ gem 'devise'
 
 # 入力フォームの追加,削除のGemfile
 gem 'cocoon'
+
+gem 'pry-byebug'
