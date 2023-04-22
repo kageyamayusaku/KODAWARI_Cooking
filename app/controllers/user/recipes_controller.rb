@@ -44,7 +44,8 @@ class User::RecipesController < ApplicationController
       end
     # 下書きボタンを押下した場合
     elsif params[:draft]
-      if @recipe.update(is_draft: true)
+      @recipe.is_draft = true
+      if @recipe.save(validate: false)
         redirect_to edit_recipe_path(@recipe), notice: "レシピを下書き保存しました！"
       else
         render :new, alert: "登録できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
@@ -54,6 +55,7 @@ class User::RecipesController < ApplicationController
 
 
   def edit
+    @recipe = Recipe.find(params[:id])
   end
 
 
@@ -90,6 +92,9 @@ class User::RecipesController < ApplicationController
 
 
   def destroy
+    recipe = Recipe.find(params[:id])
+    recipe.destroy
+    redirect_to action: :index, notice: "レシピを削除しました！"
   end
 
 

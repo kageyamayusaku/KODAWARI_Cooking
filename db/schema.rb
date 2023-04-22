@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 2023_04_16_082017) do
 
   create_table "recipes", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "genre_id", null: false
+    t.integer "genre_id"
     t.integer "recipe_tag_relation_id"
     t.string "title", null: false
     t.string "introduction", null: false

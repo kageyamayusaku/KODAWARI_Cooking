@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-5">
         <div class="form-group">
-          <%= @recipe.recipe_image %>
+          <%= image_tag @recipe.recipe_image, :size => '350x300' %>
         </div>
       </div>
 
@@ -20,7 +20,7 @@
       <div class="col-7">
         <div class="form-inline mb-2">
           <h4 class="mb-0">材料</h4>
-          <%= @recipe.serving %>
+          <%= @recipe.serving %>人分
         </div>
         <div class="materials">
           <div class="mx-auto">
@@ -44,7 +44,7 @@
   <!------------ ジャンル,タグ -------------->
     <div class="row">
       <div class="form-group">
-        <%= @recipe.genre %>
+        <%= @recipe.genre.name %>
       </div>
       <div class="form-group">
         <% @recipe.tags.each do |tag| %>
@@ -71,7 +71,7 @@
       <div>
         <div class="materials">
           <div class="mx-auto">
-            <%= @recipe.procedures do |procedure| %>
+            <% @recipe.procedures.each do |procedure| %>
               <div class="nested-fields">
                 <div class="row mb-1">
                   <div class="d-inline-block">

@@ -16,17 +16,17 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :procedures, allow_destroy: true
 
   # バリデーション
+  validates :title, presence: true, length: { maximum: 14 }
+
   with_options presence: true, on: :publicize do
     validates :genre_id
     validates :materials
     validates :procedures
-    validates :title
     validates :recipe_image
     validates :introduction
     validates :serving
+    validates :introduction, length: { maximum: 80 }
   end
-  validates :title,        length: { maximum: 14 }, on: :publicize
-  validates :introduction, length: { maximum: 80 }, on: :publicize
 
   # favoriteが存在しているかどうかmethod
   def favorited_by?(user)

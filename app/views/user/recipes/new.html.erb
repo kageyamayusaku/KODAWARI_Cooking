@@ -1,15 +1,6 @@
-<% if @recipe.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
-    <ul>
-    <% @recipe.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
-
+<div class="container">
+  <%= render "layouts/error_message", error: @recipe %>
+</div>
 
 <div class="container mt-4 align-imtes-center">
   <div class='mx-auto mb-5'>
@@ -35,7 +26,7 @@
       <div class="col-7">
         <div class="form-inline mb-2">
           <h4 class="mb-0">材料</h4>
-          <%= f.text_field :serving, placeholder: "何人分", size: "10x3", class: 'ml-4' %>
+          <%= f.text_field :serving, placeholder: "何", size: "10x3", class: 'ml-4' %>人分
         </div>
         <div class="materials">
           <div class="mx-auto">

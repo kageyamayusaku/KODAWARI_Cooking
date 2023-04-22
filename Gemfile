@@ -60,7 +60,15 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # deviseのGemfile
 gem 'devise'
 
+# deviseのエラーメッセージを日本語化するためのGemfile
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+
+# エラーメッセージを日本語化するためのGemfile
+gem 'rails-i18n'
+
 # 入力フォームの追加,削除のGemfile
 gem 'cocoon'
 
+# byebugのGemfile
 gem 'pry-byebug'
