@@ -1,4 +1,4 @@
-class User::FavoriteController < ApplicationController
+class User::FavoritesController < ApplicationController
 
   def create
     recipe = Recipe.find(params[:recipe_id])

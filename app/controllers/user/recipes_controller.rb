@@ -22,6 +22,7 @@ class User::RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @post_comment = PostComment.new
+    @step = 1
   end
 
 
