@@ -4,7 +4,13 @@ ja:
       recipe: レシピ
     attributes:
       recipe:
+        genre: ジャンル
+        title: タイトル
         recipe_image: 画像
-        title:        タイトル
-        introduction: 紹介文
-        serving:      何人分
+        introduction: ポイント
+        serving: 何人分
+      materials:
+        name: 材料
+        amount: 分量
+      procedures:
+        body: 作り方

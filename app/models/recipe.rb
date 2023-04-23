@@ -19,13 +19,11 @@ class Recipe < ApplicationRecord
   validates :title, presence: true, length: { maximum: 14 }
 
   with_options presence: true, on: :publicize do
-    validates :genre_id
     validates :materials
     validates :procedures
     validates :recipe_image
-    validates :introduction
-    validates :serving
     validates :introduction, length: { maximum: 80 }
+    validates :serving
   end
 
   # favoriteが存在しているかどうかmethod
