@@ -109,9 +109,7 @@
 <!------------ 編集 -------------->
   <div class="row mt-4">
     <div class="mx-auto">
-      <%= link_to edit_recipe_path(@recipe.id) do %>
-        <h4>編集へ</h4>
-      <% end %>
+      <%= link_to "編集へ", edit_recipe_path(@recipe.id), style: 'font-size: 20px', class: 'px-4 btn btn-sm btn-outline-success' %>
     </div>
   </div>
 

@@ -64,25 +64,25 @@ class User::RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     # ➀下書きレシピの更新（公開）の場合
     if params[:publicize_draft]
-      # レシピ公開時にバリデーションを実施
-      # updateメソッドにはcontextが使用できないため、公開処理にはattributesとsaveメソッドを使用する
-      @recipe.attributes = recipe_params.merge(is_draft: false)
+      # モデルオブジェクトの属性を一括で更新する
+      @recipe.assign_atstributes(recipe_params.merge(is_draft: false))
       if @recipe.save(context: :publicize)
-        redirect_to recipe_path(@recipe.id), notice: "下書きのレシピを公開しました！"
+        redirect_to recipe_path(@recipe), notice: "下書きのレシピを公開しました！"
       else
         @recipe.is_draft = true
         render :edit, alert: "レシピを公開できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
       end
     # ➁下書きレシピの更新（非公開）の場合
     elsif params[:update_draft]
-      if @recipe.update(recipe_params)
-        redirect_to recipe_path(@recipe.id), notice: "下書きレシピを更新しました！"
+      @recipe.assign_attributes(recipe_params)
+      if @recipe.save(validate: false)
+        redirect_to edit_recipe_path(@recipe), notice: "下書きレシピを更新しました！"
       else
         render :edit, alert: "更新できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
       end
     # ➂公開済みレシピの更新の場合
-    elsif　params[:update_post]
-      @recipe.attributes = recipe_params
+    elsif params[:update_post]
+      @recipe.assign_attributes(recipe_params)
       if @recipe.save(context: :publicize)
         redirect_to recipe_path(@recipe.id), notice: "レシピを更新しました！"
       else
@@ -95,7 +95,7 @@ class User::RecipesController < ApplicationController
   def destroy
     recipe = Recipe.find(params[:id])
     recipe.destroy
-    redirect_to action: :index, notice: "レシピを削除しました！"
+    redirect_to home_path, notice: "レシピを削除しました！"
   end
 
 
@@ -103,8 +103,8 @@ class User::RecipesController < ApplicationController
     params.require(:recipe).permit(
       :user_id, :genre_id, :material_id, :procedure_id, :title,
       :recipe_image, :introduction, :serving, :is_draft,
-      materials_attributes: [:name, :amount, :_destroy],
-      procedures_attributes: [:body, :_destroy],
+      materials_attributes: [:id, :name, :amount, :_destroy],
+      procedures_attributes: [:id, :body, :_destroy],
       tag_ids: []
     )
   end

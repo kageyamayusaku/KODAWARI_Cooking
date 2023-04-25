@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 2023_04_16_082017) do
     t.integer "recipe_tag_relation_id"
     t.string "title", null: false
     t.string "introduction", null: false
-    t.integer "serving"
+    t.string "serving", null: false
     t.boolean "is_draft", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
