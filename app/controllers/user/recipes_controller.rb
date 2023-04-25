@@ -9,7 +9,7 @@ class User::RecipesController < ApplicationController
         @recipes += Tag.find_by(name: key).recipes if value == "1"
       end
       @recipes.uniq!
-    else params[:search]
+    elsif params[:search]
       @recipes = Recipe.search(params[:search])
     end
     # タグのパラメータがあればindexアクション内でtagsテーブルに保存
@@ -65,7 +65,7 @@ class User::RecipesController < ApplicationController
     # ➀下書きレシピの更新（公開）の場合
     if params[:publicize_draft]
       # モデルオブジェクトの属性を一括で更新する
-      @recipe.assign_atstributes(recipe_params.merge(is_draft: false))
+      @recipe.assign_attributes(recipe_params.merge(is_draft: false))
       if @recipe.save(context: :publicize)
         redirect_to recipe_path(@recipe), notice: "下書きのレシピを公開しました！"
       else

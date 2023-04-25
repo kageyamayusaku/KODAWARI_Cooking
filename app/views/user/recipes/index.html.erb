@@ -1,20 +1,18 @@
 <div class="container">
   <div class="row">
-    <%= render 'layouts/search', recipes: @recipes %>
-  </div>
-  <div class="row">
     <ul>
+
     <% @recipes.each do |recipe| %>
+    <% if recipe.is_draft == false %>
       <li>
         <%= link_to recipe.title, recipe %>
         <%= recipe.created_at %>
       </li>
+      <p><%= link_to "#{recipe.post_comments.count} コメント", recipe_path(recipe.id) %></p>
       <%#= link_to "編集",edit_recipe_path(recipe) %>
       <%#= link_to "削除",recipe, method: :delete %>
     <% end %>
+    <% end %>
     </ul>
   </div>
-  
-  
-   <p><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></p>
 </div>
