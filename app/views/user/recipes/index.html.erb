@@ -1,18 +1,35 @@
 <div class="container">
-  <div class="row">
-    <ul>
-
-    <% @recipes.each do |recipe| %>
-    <% if recipe.is_draft == false %>
-      <li>
-        <%= link_to recipe.title, recipe %>
-        <%= recipe.created_at %>
-      </li>
-      <p><%= link_to "#{recipe.post_comments.count} コメント", recipe_path(recipe.id) %></p>
-      <%#= link_to "編集",edit_recipe_path(recipe) %>
-      <%#= link_to "削除",recipe, method: :delete %>
-    <% end %>
-    <% end %>
-    </ul>
+  <div class="row mt-3">
+    <h1 class="mx-auto">レシピ一覧</h1>
   </div>
+
+  <!------------ ジャンル検索 -------------->
+  <div class="row mt-3">
+    <%= render 'layouts/search', recipes: @recipes %>
+  </div>
+
+  <!------------ レシピ一覧 -------------->
+  <div class="row mt-3">
+    <table>
+      <tr>
+      <% @recipes.each do |recipe| %>
+      <% if recipe.is_draft == false %>
+        <td>
+
+          <div>
+            <%= link_to recipe_path(recipe.id) do %>
+              <%= image_tag recipe.recipe_image, :size => '250x250' %>
+            <% end %>
+          </div>
+
+          <div class="text-center">
+            <%= recipe.title %>
+          </div>
+        </td>
+      <% end %>
+      <% end %>
+      </tr>
+    </table>
+  </div>
+
 </div>
