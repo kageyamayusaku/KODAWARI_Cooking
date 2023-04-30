@@ -3,27 +3,53 @@
     <h1 class="mx-auto">レシピ一覧</h1>
   </div>
 
-  <!------------ ジャンル検索 -------------->
+  <!------------ 検索フォーム -------------->
   <div class="row mt-3">
     <%= render 'layouts/search', recipes: @recipes %>
   </div>
 
+  <!------------ レシピ検索結果の表示 -------------->
+  <div class="row mt-3 d-block">
+    <% if @recipes.empty? %>
+      <h4>・検索結果はありません</h4>
+    <% else %>
+      <h4>・検索されたレシピ</h4>
+      <table class="d-inline">
+        <tr>
+          <% @recipes.reject(&:is_draft).each do |recipe| %>
+            <td>
+              <div>
+                <%= link_to recipe_path(recipe.id) do %>
+                  <%= image_tag recipe.recipe_image, :size => '250x250' %>
+                <% end %>
+              </div>
+              <div class="text-center">
+                <h3><%= recipe.title %></h3>
+              </div>
+            </td>
+          <% end %>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+
   <!------------ レシピ一覧 -------------->
+  <div class="row mt-3">
+    <h4>すべてのレシピ</h4>
+  </div>
   <div class="row mt-3">
     <table>
       <tr>
-      <% @recipes.each do |recipe| %>
+      <% @recipe_all.each do |recipe| %>
       <% if recipe.is_draft == false %>
         <td>
-
           <div>
             <%= link_to recipe_path(recipe.id) do %>
               <%= image_tag recipe.recipe_image, :size => '250x250' %>
             <% end %>
           </div>
-
           <div class="text-center">
-            <%= recipe.title %>
+            <h3><%= recipe.title %></h3>
           </div>
         </td>
       <% end %>

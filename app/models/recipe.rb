@@ -32,8 +32,11 @@ class Recipe < ApplicationRecord
   end
 
   def self.search(search)
-    return Recipe.all unless search
-    Recipe.where(['content LIKE ?', "%#{search}%"])
+    Recipe.where(['title LIKE ?', "%#{search}%"])
+  end
+
+  def self.search_by_genre(genre_id)
+    where(genre_id: genre_id)
   end
 
 end
