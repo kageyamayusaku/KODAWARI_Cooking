@@ -97,7 +97,7 @@
 <!------------ コメント表示 -------------->
   <div class="row mt-4">
     <% @recipe.post_comments.each do |post_comment| %>
-      <p><%= image_tag post_comment.user.get_profile_picture(100,100) %></p>
+      <p><%= image_tag post_comment.user.get_profile_picture %></p>
       <%= post_comment.user.name %>
       <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
       <% if post_comment.user == current_user %>
