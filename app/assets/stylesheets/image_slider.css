@@ -1,0 +1,16 @@
+.slider-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider-image {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.slider-image.visible {
+  opacity: 1;
+}
