@@ -8,12 +8,8 @@ class User::RecipesController < ApplicationController
     elsif params[:search_genre]
       @recipes = Recipe.search_by_genre(params[:search_genre])
     elsif params[:tag_ids]
-      @recipes = Recipe.joins(:tags).where(tags: { id: params[:tag_ids] }).distinct
-      @recipes = []
-      params[:tag_ids].each do |key, value|
-        @recipes += Tag.find_by(name: key).recipes if value == "1"
-      end
-      @recipes.uniq!
+      tag_ids = params[:tag_ids].map(&:to_i)
+      @recipes = Recipe.joins(:tags).where(tags: { id: tag_ids }).distinct
     end
     # タグのパラメータがあればindexアクション内でtagsテーブルに保存
     if params[:tag]

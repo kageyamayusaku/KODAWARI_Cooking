@@ -1,10 +1,17 @@
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center mt-3">
     <h1>こだわりCooking</h1>
   </div>
-  <div class="row">
-    <%= render 'layouts/search', recipes: @recipes %>
+  <div class="row mt-3">
+    <div class="col-6">
+      <h4>おすすめレシピ</h4>
+
+    </div>
+    <div class="col-6">
+      <%= render 'layouts/search', recipes: @recipes %>
+    </div>
   </div>
-  <div class="">
+  <div class="row mt-3">
+
   </div>
 </div>
