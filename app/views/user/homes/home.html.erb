@@ -35,14 +35,21 @@
       <%= render 'layouts/search', recipes: @recipes %>
     </div>
   </div>
+
+  <!------------ 一週間の献立 -------------->
   <div class="row mt-3">
     <h4>一週間の献立</h4>
-    <div>
+  </div>
+  <div class="row mt-3">
+    <div class="d-flex flex-wrap">
       <% @random_recipes_week.each_with_index do |recipe, index| %>
-      <div>
-        <h4>aa</h4>
+      <div class="mr-3">
+        <h4>
+          <%= @today %>/<%= @today.strftime('%A') %>
+        </h4>
         <%= image_tag url_for(recipe.recipe_image), alt: "Image #{index + 1}", :size => '250x250' %>
       </div>
+      <% @today = @today + 1 %>
       <% end %>
     </div>
   </div>
