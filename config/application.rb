@@ -17,6 +17,7 @@ module KODAWARICooking
     # config/locales/models/ja.ymlファイルを読み込む
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
 
+    config.i18n.default_locale = :ja
 
     # Configuration for the application, engines, and railties goes here.
     #

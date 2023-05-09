@@ -45,9 +45,9 @@
       <% @random_recipes_week.each_with_index do |recipe, index| %>
       <div class="mr-3">
         <h4>
-          <%= @today %>/<%= @today.strftime('%A') %>
+          <%= @today.strftime('%-m/%-d') %>（<%= I18n.t('date.abbr_day_names')[@today.wday] %>）
         </h4>
-        <%= image_tag url_for(recipe.recipe_image), alt: "Image #{index + 1}", :size => '250x250' %>
+        <%= image_tag url_for(recipe.recipe_image), alt: "Image #{index + 1}", :width => '260', :height => 'auto' %>
       </div>
       <% @today = @today + 1 %>
       <% end %>
