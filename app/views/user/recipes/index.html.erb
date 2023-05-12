@@ -13,14 +13,14 @@
     <% if @recipes.blank? %>
       <h4>・検索結果はありません</h4>
     <% else %>
-      <h4>・検索されたレシピ</h4>
+      <h3 class="font-italic d-inline-block" style="background: linear-gradient(transparent 70%, #FF8856 85%);">検索されたレシピ</h3>
       <table class="d-inline">
         <tr>
           <% @recipes.reject(&:is_draft).each do |recipe| %>
             <td>
               <div>
                 <%= link_to recipe_path(recipe.id) do %>
-                  <%= image_tag recipe.recipe_image, :size => '250x250' %>
+           　　　　   <%= image_tag recipe.recipe_image, :width => '260', :height => 'auto' %>
                 <% end %>
               </div>
               <div class="text-center">
@@ -35,7 +35,7 @@
 
   <!------------ レシピ一覧 -------------->
   <div class="row mt-3">
-    <h4>すべてのレシピ</h4>
+    <h3 class="font-italic d-inline-block" style="background: linear-gradient(transparent 70%, #FF8856 85%);">すべてのレシピ</h3>
   </div>
   <div class="row mt-3">
     <table>

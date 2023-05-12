@@ -17,3 +17,7 @@
   width: 400px;
   object-fit: cover;
 }
+
+*{
+  font-family: 'Zen Kurenaido', sans-serif;
+}
