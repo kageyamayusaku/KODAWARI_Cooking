@@ -8,12 +8,8 @@ class User::RecipesController < ApplicationController
     elsif params[:search_genre]
       @recipes = Recipe.search_by_genre(params[:search_genre])
     elsif params[:tag_ids]
-      tag_ids = params[:tag_ids].map(&:to_i)
+      tag_ids = Array(params[:tag_ids]).map(&:to_i)
       @recipes = Recipe.joins(:tags).where(tags: { id: tag_ids }).distinct
-    end
-    # タグのパラメータがあればindexアクション内でtagsテーブルに保存
-    if params[:tag]
-      Tag.create(name: params[:tag])
     end
   end
 
@@ -56,6 +52,11 @@ class User::RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
+    @recipes = Recipe.search(params[:search])
+    # タグのパラメータがあればindexアクション内でtagsテーブルに保存
+    if params[:tag]
+      Tag.create(name: params[:tag])
+    end
   end
 
 
@@ -97,6 +98,8 @@ class User::RecipesController < ApplicationController
     redirect_to home_path, notice: "レシピを削除しました！"
   end
 
+
+  protected
 
   def recipe_params
     params.require(:recipe).permit(

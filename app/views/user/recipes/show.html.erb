@@ -97,9 +97,10 @@
 <!------------ コメント表示 -------------->
   <div class="row mt-4">
     <% @recipe.post_comments.each do |post_comment| %>
-      <p><%= image_tag post_comment.user.get_profile_picture %></p>
-      <%= post_comment.user.name %>
-      <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+      <div><%= image_tag post_comment.user.get_profile_picture, size: "50x50" %></div>
+      <h5><%= post_comment.created_at.strftime('%Y/%m/%d') %></h5>
+      <h5><%= post_comment.user.name %>:</h5>
+      <h5><%= post_comment.comment %></h5>
       <% if post_comment.user == current_user %>
         <%= link_to "削除", recipe_post_comment_path(post_comment.recipe, post_comment), method: :delete %>
       <% end %>
@@ -107,10 +108,12 @@
   </div>
 
 <!------------ 編集 -------------->
+  <% if @recipe.user == current_user %>
   <div class="row mt-4">
     <div class="mx-auto">
       <%= link_to "編集へ", edit_recipe_path(@recipe.id), style: 'font-size: 20px', class: 'px-4 btn btn-sm btn-outline-success' %>
     </div>
   </div>
+  <% end %>
 
 </div>

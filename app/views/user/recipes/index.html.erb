@@ -10,17 +10,17 @@
 
   <!------------ レシピ検索結果の表示 -------------->
   <div class="row mt-3 d-block">
+    <h3 class="font-italic d-inline-block" style="background: linear-gradient(transparent 70%, #FF8856 85%);">検索されたレシピ</h3>
     <% if @recipes.blank? %>
       <h4>・検索結果はありません</h4>
     <% else %>
-      <h3 class="font-italic d-inline-block" style="background: linear-gradient(transparent 70%, #FF8856 85%);">検索されたレシピ</h3>
-      <table class="d-inline">
+      <table>
         <tr>
           <% @recipes.reject(&:is_draft).each do |recipe| %>
             <td>
               <div>
                 <%= link_to recipe_path(recipe.id) do %>
-           　　　　   <%= image_tag recipe.recipe_image, :width => '260', :height => 'auto' %>
+                  <%= image_tag recipe.recipe_image, :width => '260', :height => 'auto' %>
                 <% end %>
               </div>
               <div class="text-center">

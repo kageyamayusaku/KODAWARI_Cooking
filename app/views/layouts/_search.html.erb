@@ -1,32 +1,26 @@
 <div class="container">
-  <div class="row justify-content-end">
-    <p>レシピで探す</p>
+  <div class="row justify-content-end mt-5">
+    <h4>レシピ名で探す</h4>
     <%= form_tag(recipes_path, method: :get) do %>
       <%= text_field_tag :search_recipe %>
       <%= submit_tag 'レシピ検索', :name => nil %>
     <% end %>
   </div>
 
-  <div class="row justify-content-end">
-    <p>ジャンルで探す</p>
+  <div class="row justify-content-end mt-2">
+    <h4>ジャンルで探す</h4>
     <%= form_tag(recipes_path, method: :get) do %>
       <%= collection_select(nil, :search_genre, Genre.all, :id, :name, {include_blank: '選択する'}) %>
       <%= submit_tag 'ジャンル検索', :name => nil %>
     <% end %>
   </div>
 
-  <div class="row justify-content-end">
-    <p>タグで探す</p>
+  <div class="row justify-content-end mt-2">
+    <h4>タグで探す</h4>
     <%= form_with url: recipes_path, method: :get, local: true do |form| %>
-      <%= form.collection_select(:tag_ids, Tag.all, :id, :name, { include_blank: '選択する' }, { multiple: true }) %>
+      <%= form.collection_select(:tag_ids, Tag.all, :id, :name, { include_blank: '選択する' }) %>
       <%= form.submit 'タグ検索' %>
     <% end %>
   </div>
 
-  <div class="row justify-content-end">
-    <%= form_tag({controller: "recipes",action: "index"}, method: :get) do %>
-      <%= text_field_tag :tag %>
-      <%= submit_tag 'タグを追加' %>
-    <% end %>
-  </div>
 </div>
