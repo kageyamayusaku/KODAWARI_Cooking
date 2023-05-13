@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_one_attached :profile_picture
 
+  # バリデーション
+  validates :name, presence: true
+
   def get_profile_picture
     unless profile_picture.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
