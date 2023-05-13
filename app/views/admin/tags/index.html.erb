@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row mt-3">
+    <h1 class="mx-auto">タグ一覧</h1>
+  </div>
+  <div class="row mt-3">
+    <div class="col-6">
+      <% @tags.each do |tag| %>
+        <table class="table">
+          <tr>
+            <td><%= tag.name %></td>
+            <td><%= link_to "削除", tag_path(tag), method: :delete %></td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

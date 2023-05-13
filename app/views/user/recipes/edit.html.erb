@@ -59,29 +59,6 @@
     </div>
   </div>
 
-<!------------ タグ登録欄 -------------->
-  <div class="row">
-    <div class="row justify-content-end">
-    <%= form_tag({controller: "recipes",action: "edit"}, method: :get) do %>
-      <%= text_field_tag :tag %>
-      <%= submit_tag 'タグを追加' %>
-    <% end %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group form-inline">
-      <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-        <div class='form-check mr-3'>
-          <%= tag.label class: 'form-check-label' do %>
-            <%= tag.check_box class: 'form-check-input' %>
-            <%= tag.text %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-
-
 <!------------ ポイント入力欄 -------------->
   <div class="row">
     <h3>Point</h3>
@@ -129,5 +106,31 @@
     </div>
   </div>
 
+<!------------ タグ登録欄 -------------->
+  <div class="row">
+    <div class="form-group form-inline">
+      <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+        <div class='form-check mr-3'>
+          <%= tag.label class: 'form-check-label' do %>
+            <%= tag.check_box class: 'form-check-input' %>
+            <%= tag.text %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+
 <% end %>
+
+  <div class="row">
+    <div class="row justify-content-end">
+    <%= form_with url: recipe_tags_path(@recipe), local: true do |f| %>
+      <%= f.text_field :name %>
+      <%= f.submit "追加する" %>
+    <% end %>
+    </div>
+  </div>
+
 </div>
