@@ -109,7 +109,7 @@
   <% if @recipe.user == current_user %>
   <div class="row mt-4">
     <div class="mx-auto">
-      <%= link_to "編集へ", edit_recipe_path(@recipe.id), style: 'font-size: 20px', class: 'px-4 btn btn-sm btn-outline-success' %>
+      <%= link_to "編集へ", edit_recipe_path(@recipe), style: 'font-size: 20px', class: 'px-4 btn btn-sm btn-outline-success' %>
     </div>
   </div>
   <% end %>

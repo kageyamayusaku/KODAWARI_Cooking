@@ -14,6 +14,12 @@ class User::RecipesController < ApplicationController
   end
 
 
+  def index_user
+    @recipes_false = current_user.recipes.where(is_draft: false)
+    @recipes_true = current_user.recipes.where(is_draft: true)
+  end
+
+
   def show
     @recipe = Recipe.find(params[:id])
     @post_comment = PostComment.new

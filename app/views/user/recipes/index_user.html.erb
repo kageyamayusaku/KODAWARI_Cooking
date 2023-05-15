@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row justify-content-center mt-3">
+    <h1>あなたのレシピ一覧</h1>
+  </div>
+  <div class="row">
+    <h3 class="font-italic d-inline-block" style="background: linear-gradient(transparent 70%, #FF8856 85%);">下書き保存中のレシピ</h3>
+    <% @recipes_true.each do |recipe| %>
+      <table class="table">
+        <tr>
+          <td class="col-3"><h3><%= recipe.title %></h3></td>
+          <td class="col-2"><h5>♥<%= recipe.favorites.count %> いいね</h5></td>
+          <td class="col-2"><h5>コメント件数：<%= recipe.post_comments.count %></h5></td>
+          <td class="col-2"><%= link_to "レシピを編集", edit_recipe_path(recipe), style: 'font-size: 20px', class: 'px-4 btn btn-sm btn-outline-success' %></td>
+          <td class="col-2"><%= link_to "レシピを削除", recipe_path(recipe), method: :delete, data: {confirm: "このレシピを削除しますか？"}, style: 'font-size: 20px', class: 'btn btn-outline-danger btn-sm' %></td>
+        </tr>
+      </table>
+    <% end %>
+    <h3 class="font-italic d-inline-block" style="background: linear-gradient(transparent 70%, #FF8856 85%);">投稿済みレシピ</h3>
+    <% @recipes_false.each do |recipe| %>
+      <table class="table">
+        <tr>
+          <td class="col-3"><h3><%= recipe.title %></h3></td>
+          <td class="col-2"><h5>♥<%= recipe.favorites.count %> いいね</h5></td>
+          <td class="col-2"><h5>コメント件数：<%= recipe.post_comments.count %></h5></td>
+          <td class="col-2"><%= link_to "レシピを編集", edit_recipe_path(recipe), style: 'font-size: 20px', class: 'px-4 btn btn-sm btn-outline-success' %></td>
+          <td class="col-2"><%= link_to "レシピを削除", recipe_path(recipe), method: :delete, data: {confirm: "このレシピを削除しますか？"}, style: 'font-size: 20px', class: 'btn btn-outline-danger btn-sm' %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>

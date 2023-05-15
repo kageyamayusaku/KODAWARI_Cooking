@@ -20,6 +20,7 @@ devise_for :user,skip: [:passwords], controllers: {
     get 'home' => 'homes#home'
     post 'homes/guest_log_in' => 'homes#guest_log_in'
     resources :recipes do
+      get 'index_user', on: :collection
       resources :tags, only: [:create]
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]

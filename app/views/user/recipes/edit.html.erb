@@ -3,24 +3,6 @@
 </div>
 
 <div class="container mt-4">
-<%= form_with model: @recipe, local: true do |f| %>
-
-<!------------ タイトル入力欄 -------------->
-  <div class="row">
-    <div class="form-group">
-      <%= f.text_field :title, class: "form-control form-control-lg", size: '40 x 3', placeholder: "タイトル" %>
-    </div>
-  </div>
-
-<!------------ ジャンル登録欄 -------------->
-  <div class="row mt-2">
-    <div class="form-group">
-      <%= f.label :ジャンル %>
-      <%= f.collection_select(:genre_id, Genre.all, :id, :name, {include_blank: '選択する'}) %>
-    </div>
-  </div>
-
-<% end %>
 
   <!------------ タグ登録欄 -------------->
   <div class="row ml-1">
@@ -47,8 +29,23 @@
     </div>
   </div>
 
+<!------------ ジャンル登録欄 -------------->
+  <div class="row mt-2">
+    <div class="form-group">
+      <%= f.label :ジャンル %>
+      <%= f.collection_select(:genre_id, Genre.all, :id, :name, {include_blank: '選択する'}) %>
+    </div>
+  </div>
+
+<!------------ タイトル入力欄 -------------->
+  <div class="row">
+    <div class="form-group">
+      <%= f.text_field :title, class: "form-control form-control-lg", size: '40 x 3', placeholder: "タイトル" %>
+    </div>
+  </div>
+
 <!------------ 画像登録欄 -------------->
-  <div class="row mt-3">
+  <div class="row">
     <div class="col-6">
       <div class="form-group">
         <%= f.file_field :recipe_image, class: "form-control-file", accept: "image/*", id: "recipe_recipe_image", style: "opacity: 0; position: absolute;" %>
