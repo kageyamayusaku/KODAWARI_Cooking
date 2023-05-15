@@ -2,7 +2,7 @@
   <div class="row justify-content-end mt-5">
     <h4>レシピ名で探す</h4>
     <%= form_tag(recipes_path, method: :get) do %>
-      <%= text_field_tag :search_recipe %>
+      <%= text_field_tag :search_recipe, params[:search_recipe], placeholder: "料理名を入力してください" %>
       <%= submit_tag 'レシピ検索', :name => nil %>
     <% end %>
   </div>

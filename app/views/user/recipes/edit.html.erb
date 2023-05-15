@@ -12,17 +12,57 @@
     </div>
   </div>
 
+<!------------ ジャンル登録欄 -------------->
+  <div class="row mt-2">
+    <div class="form-group">
+      <%= f.label :ジャンル %>
+      <%= f.collection_select(:genre_id, Genre.all, :id, :name, {include_blank: '選択する'}) %>
+    </div>
+  </div>
+
+<% end %>
+
+  <!------------ タグ登録欄 -------------->
+  <div class="row ml-1">
+    <div class="row justify-content-end">
+    <%= form_with url: recipe_tags_path(@recipe), local: true do |f| %>
+      <%= f.text_field :name %>
+      <%= f.submit "タグを追加する" %>
+    <% end %>
+    </div>
+  </div>
+
+<%= form_with model: @recipe, local: true do |f| %>
+
+  <div class="row mt-2 ml-1">
+    <div class="form-group form-inline">
+      <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+        <div class='form-check mr-3'>
+          <%= tag.label class: 'form-check-label' do %>
+            <%= tag.check_box class: 'form-check-input' %>
+            <%= tag.text %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
 <!------------ 画像登録欄 -------------->
-  <div class="row">
-    <div class="col-5">
+  <div class="row mt-3">
+    <div class="col-6">
       <div class="form-group">
-        <%= f.file_field :recipe_image, class: "form-control-file", accept: "image/*", id: "recipe_recipe_image" %>
-        <div id="new-image"></div>
+        <%= f.file_field :recipe_image, class: "form-control-file", accept: "image/*", id: "recipe_recipe_image", style: "opacity: 0; position: absolute;" %>
+        <label for="recipe_recipe_image" id="file-label">画像を選択</label>
+        <div id="new-image" class="mt-1">
+          <% if @recipe.recipe_image.attached? %>
+            <%= image_tag @recipe.recipe_image, class: 'existing-image', :width => '500', :height => 'auto' %>
+          <% end %>
+        </div>
       </div>
     </div>
 
 <!------------ 材料登録欄 -------------->
-    <div class="col-7">
+    <div class="col-6">
       <div class="form-inline">
         <h3>材料</h3>
         <h4 class="form-inline pl-4">
@@ -48,14 +88,6 @@
         association_insertion_method: 'before'
         }%>
       </div>
-    </div>
-  </div>
-
-<!------------ ジャンル登録欄 -------------->
-  <div class="row">
-    <div class="form-group">
-      <%= f.label :ジャンル %><br>
-      <%= f.collection_select(:genre_id, Genre.all, :id, :name, {include_blank: '選択する'}) %>
     </div>
   </div>
 
@@ -106,31 +138,5 @@
     </div>
   </div>
 
-<!------------ タグ登録欄 -------------->
-  <div class="row">
-    <div class="form-group form-inline">
-      <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-        <div class='form-check mr-3'>
-          <%= tag.label class: 'form-check-label' do %>
-            <%= tag.check_box class: 'form-check-input' %>
-            <%= tag.text %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-
-
-
 <% end %>
-
-  <div class="row">
-    <div class="row justify-content-end">
-    <%= form_with url: recipe_tags_path(@recipe), local: true do |f| %>
-      <%= f.text_field :name %>
-      <%= f.submit "追加する" %>
-    <% end %>
-    </div>
-  </div>
-
 </div>

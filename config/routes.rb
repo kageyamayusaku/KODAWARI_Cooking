@@ -24,6 +24,11 @@ devise_for :user,skip: [:passwords], controllers: {
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
+    resources :tags do
+      collection do
+        post :create_tag_without_recipe
+      end
+    end
   end
 
 end

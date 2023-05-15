@@ -14,10 +14,23 @@
  *= require_self
  */
 .new-img{
-  width: 400px;
+  width: 500px;
   object-fit: cover;
 }
 
 *{
   font-family: 'Zen Kurenaido', sans-serif;
+}
+
+#file-label {
+  display: inline-block;
+  padding: 3px 16px;
+  background-color: gray;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+}
+
+#file-label:hover {
+  background-color: darkgray;
 }
