@@ -1,8 +1,8 @@
 class CreateRecipeTagRelations < ActiveRecord::Migration[6.1]
   def change
     create_table :recipe_tag_relations do |t|
-      t.references :recipe, foreign_key: true # , null: false
-      t.references :tag,    foreign_key: true # , null: false
+      t.integer :recipe_id  # , null: false
+      t.integer :tag_id     # , null: false
 
       t.timestamps
     end

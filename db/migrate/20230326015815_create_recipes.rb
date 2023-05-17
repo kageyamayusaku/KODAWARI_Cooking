@@ -1,9 +1,9 @@
 class CreateRecipes < ActiveRecord::Migration[6.1]
   def change
     create_table :recipes do |t|
-      t.references :user,     null: false, foreign_key: true
-      t.references :genre,                 foreign_key: true # , null: false
-      t.references :recipe_tag_relation,   foreign_key: true # , null: false
+      t.integer :user_id,     null: false
+      t.integer :genre_id                # , null: false
+      t.integer :recipe_tag_relation_id  # , null: false
       t.string :title,        null: false
       t.string :introduction, null: false
       t.string :serving,      null: false

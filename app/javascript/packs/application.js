@@ -14,8 +14,6 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"
 
-import '../image_slider';
-
 
 import '@fortawesome/fontawesome-free/js/all'
 
