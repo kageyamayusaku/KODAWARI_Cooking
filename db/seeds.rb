@@ -371,7 +371,7 @@ Procedure.create!([
 Recipe.create!(
   user_id: 1,
   genre_id: 2,
-  title: "ミートソーススパゲッティ",
+  title: "ミートソース",
   introduction: "具だくさんで栄養満点のミートソーススパゲッティです。",
   serving: 4,
   is_draft: false,

@@ -16,7 +16,7 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :procedures, allow_destroy: true
 
   # バリデーション
-  validates :title, presence: true, length: { maximum: 10 }
+  validates :title, presence: true, length: { maximum: 20 }
 
   with_options presence: true, on: :publicize do
     validates :materials
