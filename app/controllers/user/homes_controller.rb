@@ -16,8 +16,8 @@ class User::HomesController < ApplicationController
 
   def home
     @recipes = Recipe.search(params[:search])
-    @random_recipes = Recipe.where(is_draft: false).order('RAND()').limit(3)
-    @random_recipes_week = Recipe.where(is_draft: false).order('RAND()').limit(7)
+    @random_recipes = Recipe.where(is_draft: false).order('rand()').limit(3)
+    @random_recipes_week = Recipe.where(is_draft: false).order('rand()').limit(7)
 
     require 'date'
     @today = Date.today
