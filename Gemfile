@@ -31,6 +31,10 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  # byebugのGemfile
+  gem 'pry-byebug'
+
 end
 
 group :development do
@@ -69,9 +73,6 @@ gem 'rails-i18n'
 
 # 入力フォームの追加,削除のGemfile
 gem 'cocoon'
-
-# byebugのGemfile
-gem 'pry-byebug'
 
 gem 'dotenv-rails'
 group :production do
