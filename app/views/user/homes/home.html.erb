@@ -18,9 +18,9 @@
             <%= link_to recipe_path(recipe.id) do %>
               <%= image_tag url_for(recipe.recipe_image), alt: "Image #{index + 1}", :width => 'auto', :height => '400' %>
             <% end %>
-            <div class="text-center">
-              <h3><%= recipe.title %></h3>
-            </div>
+              <div class="text-center">
+                <h3><%= recipe.title %></h3>
+              </div>
             </div>
           <% end %>
         </div>
