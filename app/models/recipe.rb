@@ -3,10 +3,10 @@ class Recipe < ApplicationRecord
   # アソシエーション
   belongs_to :user
   belongs_to :genre
-  has_many :post_comments,        dependent: :destroy
-  has_many :favorites,            dependent: :destroy
-  has_many :materials,            dependent: :destroy
-  has_many :procedures,           dependent: :destroy
+  has_many :post_comments,      dependent: :destroy
+  has_many :favorites,          dependent: :destroy
+  has_many :materials,          dependent: :destroy
+  has_many :procedures,          dependent: :destroy
   has_many :recipe_tag_relations, dependent: :destroy
   has_many :tags, through: :recipe_tag_relations, dependent: :destroy
   has_one_attached :recipe_image

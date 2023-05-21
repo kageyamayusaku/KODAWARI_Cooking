@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(version: 2023_04_16_082017) do
     t.string "amount", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["recipe_id"], name: "index_materials_on_recipe_id"
   end
 
   create_table "post_comments", force: :cascade do |t|
@@ -91,7 +90,6 @@ ActiveRecord::Schema.define(version: 2023_04_16_082017) do
     t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["recipe_id"], name: "index_procedures_on_recipe_id"
   end
 
   create_table "recipe_tag_relations", force: :cascade do |t|
@@ -99,9 +97,6 @@ ActiveRecord::Schema.define(version: 2023_04_16_082017) do
     t.integer "tag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["recipe_id", "tag_id"], name: "index_recipe_tag_relations_on_recipe_id_and_tag_id", unique: true
-    t.index ["recipe_id"], name: "index_recipe_tag_relations_on_recipe_id"
-    t.index ["tag_id"], name: "index_recipe_tag_relations_on_tag_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -142,12 +137,8 @@ ActiveRecord::Schema.define(version: 2023_04_16_082017) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "favorites", "recipes"
   add_foreign_key "favorites", "users"
-  add_foreign_key "materials", "recipes"
   add_foreign_key "post_comments", "recipes"
   add_foreign_key "post_comments", "users"
-  add_foreign_key "procedures", "recipes"
-  add_foreign_key "recipe_tag_relations", "recipes"
-  add_foreign_key "recipe_tag_relations", "tags"
   add_foreign_key "recipes", "genres"
   add_foreign_key "recipes", "recipe_tag_relations"
   add_foreign_key "recipes", "users"
